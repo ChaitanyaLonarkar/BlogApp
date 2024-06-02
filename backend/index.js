@@ -1,15 +1,16 @@
 const express = require('express')
 const app = express()
+const { logOut, loginUser, signUp } =require("./controllers/authControllers.js");
 const connectDb= require("./DB/connection.js");
 
-// const mongoose = require('mongoose');
-// mongoose.connect('');
-
-// respond with "hello world" when a GET request is made to the homepage
 app.get('/', (req, res) => {
   res.send('hello world')
 })
+const router = express.Router();
 
+// router.post("/login", loginUser);
+router.post("/signup", signUp);
+// router.post("/logout", logOut);
 app.listen(5000, () => {
     connectDb();
     console.log(`working on 5000`);
