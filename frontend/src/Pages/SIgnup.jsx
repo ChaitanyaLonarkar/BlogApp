@@ -6,7 +6,7 @@ export default function SIgnup() {
     <div className="flex flex-col gap-3 justify-center items-center  ">
       <h1 className="text text-center text-2xl font-bold">SignUP</h1>
       <form
-        action="/register"
+        action="/signUp"
         method="post"
         className="flex flex-col gap-3 justify-center bg-slate-900 p-4 rounded-lg  "
       >
