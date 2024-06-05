@@ -3,44 +3,45 @@ const app = express();
 const cookieParser = require("cookie-parser");
 var jwt = require("jsonwebtoken");
 const cors = require("cors");
-const signUp = require("./controllers/authControllers");
+// const signUp = require("./controllers/authControllers");
 
 require('dotenv').config()
 
 const connectDb = require("./DB/connection.js");
-const router = express.Router();
+// const router = express.Router();
 const authRouter = require("./routes/authRoute.js");
 
-const login=require("./controllers/authControllers")
-const logout=require("./controllers/authControllers")
+// const Login=require("./controllers/authControllers")
+// const logout=require("./controllers/authControllers")
 
 app.use(cookieParser());
 app.use(express.json());
 app.use(cors());
-app.get("/", (req, res) => {
-  // res.cookie("name", "chaitanya");
-  // var token = jwt.sign({ foo: "bar" }, "shhhhh");
-  // console.log(token);
-  // res.cookie("token", token);
+// app.get("/", (req, res) => {
+//   // res.cookie("name", "chaitanya");
+//   // var token = jwt.sign({ foo: "bar" }, "shhhhh");
+//   // console.log(token);
+//   // res.cookie("token", token);
 
-  res.send("hello nbhbhghghgworld");
-});
+//   res.send("hello nbhbhghghgworld");
+// });
 
-app.get("/read", (req, res) => {
-  // res.cookie("name", "chaitanya");
-  console.log(req.cookies);
-  res.send("read page hello world");
-});
+// app.get("/read", (req, res) => {
+//   res.cookie("name", "chaitanya");
+//   console.log(req.cookies);
+//   res.send("read page hello world");
+// });
 // app.get("/signup",(req, res) => {
  
 
 //   req.send("hello world sing");
 // } );
+// 
+// app.post("/signup", signUp);
 
-app.post("/signup", signUp);
-
-app.post("/login", login);
-app.post("/logout", logout);
+// app.post("/login", Login);
+// app.post("/logout", logout);
+app.use("/auth", authRouter);
 
 
 // app.use("/auth/", authRouter);

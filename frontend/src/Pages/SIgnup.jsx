@@ -3,24 +3,24 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function SIgnup() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confpassword, setconfPassword] = useState("");
 
-  const handleSubmit =async (e) => {
-    // e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
 			const url = "http://localhost:3000/signup";
-			const {  data } = await axios.post(url, {name,email,password,confpassword});
-			// console.log(res.message);
+			const response = await axios.post(url, {name,email,password,confpassword});
+			console.log(response);
       console.log("done")
-			// navigate("/login");
+			navigate("/login");
 		} catch (error) {
-				setError(error.response.data.message);
-				console.log(error.response.data.message);
+				// setError(error.response.data.message);
+				console.log(error);
 
 			}
 
@@ -32,7 +32,7 @@ export default function SIgnup() {
         <h1 className="text text-center text-2xl font-bold">SignUP</h1>
         <form
           // action="/register"
-          onSubmit={handleSubmit()}
+          onSubmit={handleSubmit}
           // method="post"
           className="flex flex-col gap-3 justify-center bg-slate-900 p-4 rounded-lg  "
         >
@@ -41,6 +41,7 @@ export default function SIgnup() {
             onChange={(e) => setName(e.target.value)}
             type="text"
             placeholder="Name"
+            value={name}
             required
           />
           <input
@@ -48,6 +49,7 @@ export default function SIgnup() {
             type="email"
             onChange={(e) => setEmail(e.target.value)}
             placeholder="email"
+            value={email}
             required
           />
           <input
@@ -55,11 +57,13 @@ export default function SIgnup() {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
+            value={password}
             required
           />
           <input
             className="bg bg-transparent outline-none text-white rounded border-2 py-3 px-4"
             type="password"
+            value={confpassword}
             onChange={(e) => setconfPassword(e.target.value)}
             placeholder="Confrim Passowrd"
             required
