@@ -3,28 +3,25 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function SIgnup() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [confpassword, setconfPassword] = useState();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confpassword, setconfPassword] = useState("");
 
   const handleSubmit =async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     try {
 			const url = "http://localhost:3000/signup";
 			const {  data } = await axios.post(url, {name,email,password,confpassword});
-			console.log(res.message);
-      console.log(data)
-			navigate("/login");
+			// console.log(res.message);
+      console.log("done")
+			// navigate("/login");
 		} catch (error) {
-			// if (
-			// 	error.response &&
-			// 	error.response.status >= 400 &&
-			// 	error.response.status <= 500
-			// ) {
 				setError(error.response.data.message);
+				console.log(error.response.data.message);
+
 			}
 
   };
@@ -35,7 +32,7 @@ export default function SIgnup() {
         <h1 className="text text-center text-2xl font-bold">SignUP</h1>
         <form
           // action="/register"
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit()}
           // method="post"
           className="flex flex-col gap-3 justify-center bg-slate-900 p-4 rounded-lg  "
         >
@@ -67,12 +64,7 @@ export default function SIgnup() {
             placeholder="Confrim Passowrd"
             required
           />
-          {/* <input
-            className="bg bg bg-blue-700 outline-none text-white rounded border-2 py-3 px-4 cursor-pointer"
-            type="submit"
-            placeholder="Confrim Passowrd"
-            required
-          /> */}
+
           <button className="bg bg bg-blue-700 outline-none text-white rounded border-2 py-3 px-4 cursor-pointer"
  type="submit">Submit</button>
         </form>
