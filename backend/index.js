@@ -1,9 +1,11 @@
 const express = require("express");
+const app = express();
 const cookieParser = require("cookie-parser");
 var jwt = require("jsonwebtoken");
-
-const app = express();
+const cors = require("cors");
 const signUp = require("./controllers/authControllers");
+
+require('dotenv').config()
 
 const connectDb = require("./DB/connection.js");
 const router = express.Router();
@@ -14,7 +16,7 @@ const logout=require("./controllers/authControllers")
 
 app.use(cookieParser());
 app.use(express.json());
-
+app.use(cors());
 app.get("/", (req, res) => {
   // res.cookie("name", "chaitanya");
   // var token = jwt.sign({ foo: "bar" }, "shhhhh");

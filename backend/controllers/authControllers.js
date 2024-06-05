@@ -65,7 +65,7 @@ module.exports = signUp;
 
 const login=async (req, res)=>{
   let user=await User.findOne({email:req.body.email})
-  if (! user) return res.send("sommething wrong")
+  if (!user) return res.send("sommething wrong")
 
     bcrypt.compare(req.body.password,user.password
       , function(err, result) {
@@ -78,9 +78,10 @@ const login=async (req, res)=>{
 module.exports=login
 
 
-
 const logout=(req, res)=>{
    res.cookie("tokenn","")
   //  res.redirect("/")
 }
+
+
 module.exports=logout
