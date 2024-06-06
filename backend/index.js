@@ -3,6 +3,7 @@ const app = express();
 const cookieParser = require("cookie-parser");
 var jwt = require("jsonwebtoken");
 const cors = require("cors");
+const isUserLoggedIn = require("./middleware/isLoggedin.js");
 
 // const dotenv = require("dotenv")
 // const signUp = require("./controllers/authControllers");
@@ -43,8 +44,11 @@ app.use(cors());
 
 // app.post("/login", Login);
 // app.post("/logout", logout);
+app.get('/',isUserLoggedIn,(req,res)=>{
+ 
+  return res.json({status:true,message:"Authorized user",})
+})
 app.use("/auth", authRouter);
-
 
 // app.use("/auth/", authRouter);
 
