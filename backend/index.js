@@ -3,6 +3,8 @@ const app = express();
 const cookieParser = require("cookie-parser");
 var jwt = require("jsonwebtoken");
 const cors = require("cors");
+
+// const dotenv = require("dotenv")
 // const signUp = require("./controllers/authControllers");
 
 require('dotenv').config()
