@@ -116,7 +116,7 @@ module.exports = logout;
 
 // this is working with api
 
-const signUp = async (req, res,next) => {
+const signUp = async (req, res) => {
   try {
     const { name, email, password, confirmPassword } = req.body;
     if (password !== confirmPassword) {
@@ -144,7 +144,7 @@ const signUp = async (req, res,next) => {
         res.send(createduser);
       });
     });
-    next()
+    
     // res.status(400).json({ error: "Passward dont match" });
   } catch (error) {
     res.send(error.message);
@@ -155,7 +155,7 @@ module.exports = signUp;
 
 
 
-module.exports.Login = async (req, res,next) => {
+module.exports.Login = async (req, res) => {
 
   try {
     const { email, password } = req.body;
@@ -176,7 +176,7 @@ module.exports.Login = async (req, res,next) => {
     //    httpOnly: false,
     //  });
      res.status(201).json({ message: "User logged in successfully", success: true });
-     next()
+
   } catch (error) {
     console.error(error);
   }
