@@ -133,7 +133,7 @@ const signUp = async (req, res) => {
       bcrypt.hash(password, salt, async function (err, hash) {
         const createduser = await User.create({ name, email, password: hash });
 
-        let token = jwt.sign({ email }, "jkshdfsdfhgshdfhgdf");
+        let token = jwt.sign({ email }, process.env.JWT_SECRET);
 
         res.cookie("token", token,{
             withCredentials: true,
@@ -155,7 +155,7 @@ module.exports = signUp;
 
 
 
-module.exports.Login = async (req, res) => {
+Login = async (req, res) => {
 
   try {
     const { email, password } = req.body;
@@ -170,16 +170,20 @@ module.exports.Login = async (req, res) => {
     if (!auth) {
       return res.json({message:'Incorrect password or email' }) 
     }
-    //  const token = createSecretToken(user._id);
-    //  res.cookie("token", token, {
-    //    withCredentials: true,
-    //    httpOnly: false,
-    //  });
+    let token = jwt.sign({ email }, process.env.JWT_SECRET);
+
+        res.cookie("token", token,{
+            withCredentials: true,
+            httpOnly: false,
+          });
+        console.log(token);
+        console.log(req.cookies);
+        
      res.status(201).json({ message: "User logged in successfully", success: true });
 
   } catch (error) {
     console.error(error);
   }
 }
-
+module.exports=Login
 
